@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Dashboard from './components/dashboard/DashBoard';
+import { Grid } from '@mui/material';
 
 function App() {
+  const getTasks = async () => {
+    await axios.get("http://localhost:8000/tarefas")
+      .then(res => setTasks(res.data.tasks))
+  }
+  const [tasks, setTasks] = useState([])
+  /*useEffect( ()=>{
+     getTasks()
+  },[])*/
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Grid container spacing={2}>
+        <Grid item  xs={5}>
+          <Dashboard />
+        </Grid>
+      </Grid>
+
+
+      {/*{tasks.map(task =>(<p key={task.id}>{task.name}</p>))}*/}
     </div>
   );
 }
