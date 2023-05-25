@@ -7,7 +7,8 @@ import { DataGrid } from '@mui/x-data-grid'
 function App() {
   const getTasks = async () => {
     await axios.get("http://localhost:8000/tarefas")
-      .then(res => setTasks(res.data.tasks))
+      .then(res => setTasks(res.data.tasks
+      ))
   }
   const [tasks, setTasks] = useState([])
   const columns = [
