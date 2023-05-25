@@ -12,31 +12,38 @@ function App() {
   }
   const [tasks, setTasks] = useState([])
   const columns = [
-    {field:"id", headerName: "ID", width:"100" },
-    {field:"tarefa", headerName: "Tarefa", width:"100" },
-    {field:"projeto", headerName: "Projeto", width:"100" },
+    {field:"id", headerName: "ID", width:"150" },
+    {field:"name", headerName: "Tarefa", width:"400" },
+    {field:"project", headerName: "Projeto", width:"100" },
     {field:"priority", headerName: "Priority", width:"100" },
     {field:"tags", headerName: "Tags", width:"100" },
     {field:"desenvolvedor", headerName: "Desenvolvedor", width:"100" },
     {field:"situação", headerName: "Situação", width:"100" }
   ]
 
-  const rows = [ 
-    {id:'1',tarefa:'Mudar Layout',projeto:'MUI',priority:'urgente',tags:'#bug',desenvolvedor:'Luiz',situação:'Completo'}
-  ]
 
   useEffect( ()=>{
      getTasks()
   },[])
 
-console.log(tasks)
+const dataRow = tasks.map(task => {
+  return{
+    id:task.id, 
+    name:task.name,
+    project:task.project.name
+  }
+})
+
+/*const rows = ()=> tasks.map(task =>
+  {'id':{{task.id}},tarefa:'Mudar Layout',projeto:'MUI',priority:'urgente',tags:'#bug',desenvolvedor:'Luiz',situação:'Completo'}
+)*/
 
 
   return (
     <div className="App">
         <DataGrid
           columns={columns}
-          rows={rows}
+          rows={dataRow}
           initialState={{
             pagination: {
               paginationModel: { page: 0, pageSize: 5 },
