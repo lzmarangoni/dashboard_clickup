@@ -3,7 +3,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid'
-import { Login } from '@mui/icons-material';
+
 
 
 
@@ -68,7 +68,7 @@ console.log(dataRow)
             paginationModel: { page: 0, pageSize: 10 },
           },
         }}
-        pageSizeOptions={[5, 10, 15, 50 ]}
+        pageSizeOptions={[5, 10, 20, 50 ]}
         
 
       />}
